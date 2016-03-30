@@ -1,7 +1,6 @@
 #include "SFML\Graphics.hpp"
 #include "SceneManager.h"
 #include "Scene.h"
-#include "Game.h"
 
 int main()
 {
@@ -9,9 +8,8 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(600, 700), "Tytul", sf::Style::None);
 
 	// SceneManager
-	SceneManager sceneManager(new Game());
-
-	Scene * active;
+	SceneManager sceneManager;
+	sceneManager.setScene(SceneInitializer::GAME_SCENE);
 
 	// Events
 	sf::Event event;
@@ -33,22 +31,22 @@ int main()
 		accumulator += frameTime;
 
 		// Pobieranie aktywnej sceny
-		active = sceneManager.getScene();
+		Scene & active = sceneManager.getScene();
 
 		// Sprawdzanie eventow
 		while (window.pollEvent(event))
-			active->inputs(event);
+			active.inputs(event);
 
 		// Liczenie fizyki, mechaniki silnika
 		while (accumulator >= dt)
 		{
-			active->update(dt);
+			active.update(dt);
 			accumulator -= dt;
 		}
 
 		// Rysowanie
 		window.clear();
-		active->draw(window);
+		active.draw(window);
 		window.display();
 	}
 

@@ -1,43 +1,32 @@
 #include "SceneManager.h"
 
 
-SceneManager::SceneManager(Scene * scene)
+SceneManager::SceneManager() : active(nullptr)
 {
-	scenes.push(scene);
 }
 
 SceneManager::~SceneManager()
 {
 }
 
-Scene * SceneManager::getScene()
+Scene & SceneManager::getScene()
 {
-	return this->scenes.top();
+	return *active;
+}
+
+void SceneManager::setScene(SceneInitializer::Scenes scene)
+{
+	delete active;
+	active = SceneInitializer::get(scene);
 }
 
 bool SceneManager::step()
 {
-	this->manageScenes();
-	return !this->scenes.empty();
+	return active;
 }
 
-void SceneManager::manageScenes()
+void SceneManager::finish()
 {
-	Scene * active = this->scenes.top();
-
-	switch (active->getState())
-	{
-	case Scene::SWITCH_NEXT:
-		{
-			this->scenes.push(active->getNext());
-			active->setState(Scene::ON);
-		}
-		break;
-	case Scene::OFF:
-		{
-			this->scenes.pop();
-			delete active;
-		}
-		break;
-	}
+	delete active;
+	active = nullptr;
 }

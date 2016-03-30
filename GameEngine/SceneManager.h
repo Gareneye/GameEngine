@@ -1,20 +1,20 @@
 #pragma once
 
-#include <stack>
 #include "SFML\Graphics.hpp"
 #include "Scene.h"
+#include "SceneInitializer.h"
 
 class SceneManager
 {
 public:
-	SceneManager(Scene *);
+	SceneManager();
 	virtual ~SceneManager();
 
-	Scene * getScene();
+	Scene & getScene();
+	void setScene(SceneInitializer::Scenes);
 	bool step();
+	void finish();
 
 private:
-	std::stack<Scene *> scenes;
-
-	void manageScenes();
+	Scene * active;
 };
