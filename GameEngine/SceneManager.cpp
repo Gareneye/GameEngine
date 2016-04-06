@@ -1,12 +1,13 @@
 #include "SceneManager.h"
 
-
-SceneManager::SceneManager() : active(nullptr)
+SceneManager::SceneManager() : active(nullptr), status(ON)
 {
 }
 
 SceneManager::~SceneManager()
 {
+	delete active;
+	active = nullptr;
 }
 
 Scene & SceneManager::getScene()
@@ -14,7 +15,7 @@ Scene & SceneManager::getScene()
 	return *active;
 }
 
-void SceneManager::setScene(SceneInitializer::Scenes scene)
+void SceneManager::setScene(const SceneInitializer::Scenes & scene)
 {
 	delete active;
 	active = SceneInitializer::get(scene);
@@ -22,11 +23,10 @@ void SceneManager::setScene(SceneInitializer::Scenes scene)
 
 bool SceneManager::step()
 {
-	return active;
+	return status;
 }
 
 void SceneManager::finish()
 {
-	delete active;
-	active = nullptr;
+	status = OFF;
 }

@@ -5,7 +5,7 @@
 
 struct SceneInitializer
 {
-	static enum Scenes
+	enum Scenes
 	{
 		GAME_SCENE,
 		MENU_SCENE

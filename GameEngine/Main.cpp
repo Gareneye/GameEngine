@@ -1,15 +1,15 @@
 #include "SFML\Graphics.hpp"
-#include "SceneManager.h"
-#include "Scene.h"
+
+#include "RootEngine.h"
+#include "EngineResources.h"
 
 int main()
 {
-	// Main Window
-	sf::RenderWindow window(sf::VideoMode(600, 700), "Tytul", sf::Style::None);
+	// RootEngine
+	RootEngine::sceneManager.setScene(SceneInitializer::GAME_SCENE);
 
-	// SceneManager
-	SceneManager sceneManager;
-	sceneManager.setScene(SceneInitializer::GAME_SCENE);
+	// Main Window
+	sf::RenderWindow window(sf::VideoMode(600, 700), EngineResources::settings.get("engine_name"), sf::Style::None);
 
 	// Events
 	sf::Event event;
@@ -22,7 +22,7 @@ int main()
 	float currentTime = timer.getElapsedTime().asSeconds();
 	float accumulator = .0f;
 
-	while (sceneManager.step())
+	while (RootEngine::sceneManager.step())
 	{
 		// Obliczanie "akumulatora czasu"
 		float newTime = timer.getElapsedTime().asSeconds();
@@ -31,7 +31,7 @@ int main()
 		accumulator += frameTime;
 
 		// Pobieranie aktywnej sceny
-		Scene & active = sceneManager.getScene();
+		Scene & active = RootEngine::sceneManager.getScene();
 
 		// Sprawdzanie eventow
 		while (window.pollEvent(event))

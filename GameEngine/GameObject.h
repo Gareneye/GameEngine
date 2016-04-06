@@ -1,11 +1,9 @@
 #pragma once
 
-#include "SFML\Graphics.hpp"
+#include <SFML\Graphics.hpp>
 
-struct Scene
+struct GameObject
 {
 	virtual void update(float) = 0;
 	virtual void draw(sf::RenderWindow &) = 0;
-	virtual void inputs(sf::Event) = 0;
 };
-

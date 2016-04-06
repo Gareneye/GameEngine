@@ -11,10 +11,15 @@ public:
 	virtual ~SceneManager();
 
 	Scene & getScene();
-	void setScene(SceneInitializer::Scenes);
+	void setScene(const SceneInitializer::Scenes &);
 	bool step();
 	void finish();
 
 private:
 	Scene * active;
+
+	enum {
+		OFF,
+		ON
+	} status;
 };
