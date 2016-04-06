@@ -11,6 +11,7 @@ public:
 	virtual ~Settings();
 
 	std::string get(const std::string &) const;
+	std::string operator[](const std::string &) const;
 	void add(const std::string &, const std::string &);
 
 private:

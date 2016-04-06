@@ -5,7 +5,7 @@
 Map::Map()
 {
 	// size of tiles
-	tileSize = std::stod(EngineResources::settings.get("tile_size"));
+	tileSize = std::stod(EngineResources::settings["tile_size"]);
 
 	//placeholder, chunk soon
 	for (int i = 0; i < 10; ++i)
