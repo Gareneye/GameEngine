@@ -2,7 +2,7 @@
 
 const float Camera::PI = 3.14f;
 
-Camera::Camera() : view(), maxSpeed(10.0f)
+Camera::Camera() : view(), speed(150.0f), distance(120.0f), radius(5.0f)
 {
 	view.setCenter(0, 0);
 
@@ -17,24 +17,38 @@ Camera::~Camera()
 {
 }
 
-void Camera::update(float)
+void Camera::update(float dt)
 {
 	sf::Vector2f posCamera = view.getCenter();
 
-	if (posCamera == posTarget) return;
+	float distanceX = posCamera.x - posTarget.x;
+	float distanceY = posCamera.y - posTarget.y;
 
-	float distanseRatioX = posCamera.x / posTarget.x;
-	float distanseRatioY = posCamera.y / posTarget.y;
+	if (abs(distanceX) < radius && abs(distanceY) < radius) return;
 
-	float speedRatioX = cos(distanseRatioX * PI / 2);
-	float speedRatioY = cos(distanseRatioY * PI / 2);
+	float speedRatioX, speedRatioY;
 
-	view.setCenter(posCamera.x + speedRatioX * maxSpeed, posCamera.y + speedRatioY * maxSpeed);
+	if (abs(distanceX) > distance)
+		speedRatioX = distanceX / distance;
+	else
+		speedRatioX = sin( (distanceX / distance) * PI / 2);
+
+	if (abs(distanceY) > distance)
+		speedRatioY = distanceY / distance;
+	else
+		speedRatioY = sin((distanceY / distance) * PI / 2);
+
+	view.setCenter(posCamera.x - speedRatioX * speed * dt, posCamera.y - speedRatioY * speed * dt);
 }
 
 void Camera::move(sf::Vector2f dest)
 {
 	posTarget = dest;
+}
+
+void Camera::drag(sf::Vector2f offset)
+{
+	posTarget = view.getCenter() + offset;
 }
 
 sf::FloatRect Camera::getViewport()

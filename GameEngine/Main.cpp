@@ -11,8 +11,8 @@ int main()
 	// Main Window
 	sf::RenderWindow window(
 		sf::VideoMode(std::stod(EngineResources::settings["res_x"]), std::stod(EngineResources::settings["res_y"])),
-		EngineResources::settings.get("engine_name"), 
-		sf::Style::None
+		EngineResources::settings.get("engine_name")//, 
+		//sf::Style::None
 		);
 
 	// Events

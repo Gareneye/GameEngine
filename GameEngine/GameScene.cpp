@@ -22,16 +22,39 @@ void GameScene::draw(sf::RenderWindow & window)
 	map.draw(window);
 }
 
-#include <iostream>
 void GameScene::inputs(sf::Event event, const sf::RenderWindow & window)
 {
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
 		RootEngine::sceneManager.finish();
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (event.type == sf::Event::KeyPressed)
 	{
-		sf::Vector2f mouse = sf::Vector2f(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-		camera.move(mouse);
+		const float distance = 200.0f;
+
+		switch (event.key.code)
+		{
+		case sf::Keyboard::A:
+			camera.drag(sf::Vector2f(-distance, .0f));
+			break;
+		case sf::Keyboard::W:
+			camera.drag(sf::Vector2f(.0f, -distance));
+			break;
+		case sf::Keyboard::S:
+			camera.drag(sf::Vector2f(.0f, distance));
+			break;
+		case sf::Keyboard::D:
+			camera.drag(sf::Vector2f(distance, .0f));
+			break;
+		}
+
 	}
+
+	if (event.type == sf::Event::MouseButtonPressed)
+	{
+		if (event.mouseButton.button == sf::Mouse::Middle)
+		{
+			camera.move( window.mapPixelToCoords(sf::Mouse::getPosition(window)) );
+		}
+	} 
 
 }
