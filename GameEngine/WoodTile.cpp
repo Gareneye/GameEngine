@@ -4,6 +4,7 @@
 
 WoodTile::WoodTile()
 {
+	tileType = Type::WOOD;
 	texture->loadFromFile("data/wood.png");
 }
 

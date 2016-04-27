@@ -34,6 +34,15 @@
     <Filter Include="Header Files\World\Tiles">
       <UniqueIdentifier>{f1a30eef-0a33-4a84-8a12-38c1676b97c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\World\Tiles">
+      <UniqueIdentifier>{f653c08b-9202-4f20-a305-24f80ad2bf4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scene\Scenes">
+      <UniqueIdentifier>{c0ed10ef-d8b9-4ddd-9b03-ffb133732f14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene\Scenes">
+      <UniqueIdentifier>{ab1679b3-4d79-493d-b154-dfc4c1ae9e98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -63,16 +72,22 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\World</Filter>
     </ClCompile>
-    <ClCompile Include="WoodTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineResources.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source Files\World</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodTile.cpp">
+      <Filter>Source Files\World\Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files\Scene\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineResources.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ChunkLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -82,12 +97,6 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Header Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneInitializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Header Files\Core</Filter>
@@ -116,10 +125,22 @@
     <ClInclude Include="WoodTile.h">
       <Filter>Header Files\World\Tiles</Filter>
     </ClInclude>
-    <ClInclude Include="EngineResources.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Chunk.h">
+      <Filter>Header Files\World</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Header Files\Scene\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneInitializer.h">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineResources.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ChunkLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

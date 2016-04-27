@@ -2,20 +2,18 @@
 
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 #include "EngineResources.h"
 #include "GameObject.h"
 #include "Tile.h"
 #include "WoodTile.h"
+#include "Chunk.h"
+#include "Logger.h"
+#include "ChunkLoader.h"
 
 namespace {
-	enum Tiles
-	{
-		NONE,
-		WOOD
-	};
-
-	typedef Tiles MapArray[10][10];
+	typedef std::unordered_map<ChunkUtilities::Coords, Chunk, ChunkUtilities::CoordsHash> MapArray;
 }
 
 class Map : public GameObject
@@ -30,12 +28,12 @@ public:
 	//void setCamera(const sf::FloatRect &);
 
 protected:
-	const sf::Texture * getTexture(Tiles);
+	const sf::Texture * Map::getTexture(Tile::Type type);
 
 private:
 	MapArray mapArray;
 
-	// Camera Rectangle
+	// Camera Rectangle for Culling
 	sf::FloatRect camera;
 
 	// Tile size

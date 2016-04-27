@@ -279,6 +279,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Chunk.cpp" />
+    <ClCompile Include="ChunkLoader.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="EngineResources.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -294,6 +296,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Chunk.h" />
+    <ClInclude Include="ChunkLoader.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="EngineResources.h" />
     <ClInclude Include="GameObject.h" />

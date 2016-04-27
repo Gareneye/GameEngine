@@ -6,7 +6,7 @@
 
 namespace SettingsException
 {
-	struct NoSettingsFile {};
+	struct NoSettingsFile : std::exception {};
 }
 
 
