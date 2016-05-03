@@ -5,11 +5,11 @@
 #include "Chunk.h"
 #include "EngineResources.h"
 
-class ChunkLoader
+class ChunkManager
 {
 public:
-	ChunkLoader();
-	~ChunkLoader();
+	ChunkManager();
+	~ChunkManager();
 
 	Chunk operator()(ChunkUtilities::Coords coords);
 	Chunk operator()(int x, int y);

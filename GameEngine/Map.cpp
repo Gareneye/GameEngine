@@ -6,7 +6,7 @@ Map::Map()
 	tileSize = std::stod(EngineResources::settings["tile_size"]);
 
 	//test
-	ChunkLoader chunkLoader;
+	ChunkManager chunkLoader;
 
 	//placeholder, chunk soon
 	/*
@@ -38,9 +38,14 @@ void Map::draw(sf::RenderWindow & window)
 {
 	//todo: where is camera?
 
-	for (int i = 0; i < 10; ++i)
-		for (int j = 0; j < 10; ++j)
+	for (int i = 0; i < CHUNK_SIZE; ++i)
+		for (int j = 0; j < CHUNK_SIZE; ++j)
 		{
+			Tile::Type type = mapArray[{ 0, 0 }].data[i][j];
+
+			if (type == Tile::NONE)
+				continue;
+
 			sf::VertexArray quad(sf::Quads, 4);
 
 			quad[0].position = sf::Vector2f(tileSize * i,		tileSize * j);
@@ -53,7 +58,7 @@ void Map::draw(sf::RenderWindow & window)
 			quad[2].texCoords = sf::Vector2f(tileSize, tileSize);
 			quad[3].texCoords = sf::Vector2f(0, tileSize);
 
-			window.draw(quad, getTexture(mapArray[{ 0, 0 }].data[i][j]));
+			window.draw(quad, getTexture(type));
 		}
 
 }

@@ -10,7 +10,7 @@
 #include "WoodTile.h"
 #include "Chunk.h"
 #include "Logger.h"
-#include "ChunkLoader.h"
+#include "ChunkManager.h"
 
 namespace {
 	typedef std::unordered_map<ChunkUtilities::Coords, Chunk, ChunkUtilities::CoordsHash> MapArray;

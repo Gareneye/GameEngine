@@ -1,5 +1,8 @@
 #pragma once
 
+#define CHUNK_SIZE 64
+
+#include <array>
 #include "Tile.h"
 #include "EngineResources.h"
 
@@ -28,12 +31,8 @@ namespace ChunkUtilities
 	};
 }
 
-class Chunk
+struct Chunk
 {
-public:
-	Chunk();
-	~Chunk();
-
-	Tile::Type data[10][10];
+	Tile::Type data[CHUNK_SIZE][CHUNK_SIZE];
 };
 

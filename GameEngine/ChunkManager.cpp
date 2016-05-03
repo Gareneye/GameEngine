@@ -1,24 +1,24 @@
-#include "ChunkLoader.h"
+#include "ChunkManager.h"
 
 
 
-ChunkLoader::ChunkLoader() : path(EngineResources::settings["chunks_path"])
+ChunkManager::ChunkManager() : path(EngineResources::settings["chunks_path"])
 {}
 
-ChunkLoader::~ChunkLoader()
+ChunkManager::~ChunkManager()
 {}
 
-Chunk ChunkLoader::operator()(ChunkUtilities::Coords coords)
+Chunk ChunkManager::operator()(ChunkUtilities::Coords coords)
 {
 	return loadChunk(std::move(coords));
 }
 
-Chunk ChunkLoader::operator()(int x, int y)
+Chunk ChunkManager::operator()(int x, int y)
 {
 	return loadChunk({x, y});
 }
 
-Chunk ChunkLoader::loadChunk(ChunkUtilities::Coords coords)
+Chunk ChunkManager::loadChunk(ChunkUtilities::Coords coords)
 {
 	std::string filePath = path + "/" + getName(coords) + ".chunk";
 
@@ -39,7 +39,7 @@ Chunk ChunkLoader::loadChunk(ChunkUtilities::Coords coords)
 	return loadedChunk;
 }
 
-void ChunkLoader::saveChunk(ChunkUtilities::Coords coords, Chunk chunk)
+void ChunkManager::saveChunk(ChunkUtilities::Coords coords, Chunk chunk)
 {
 	std::string filePath = path + "/" + getName(coords) + ".chunk";
 
@@ -56,7 +56,7 @@ void ChunkLoader::saveChunk(ChunkUtilities::Coords coords, Chunk chunk)
 	chunkFile.close();
 }
 
-std::string ChunkLoader::getName(ChunkUtilities::Coords coords)
+std::string ChunkManager::getName(ChunkUtilities::Coords coords)
 {
 	std::stringstream stringStream;
 	ChunkUtilities::CoordsHash value;
