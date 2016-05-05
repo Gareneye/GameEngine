@@ -5,6 +5,15 @@ Map::Map()
 	// size of tiles
 	tileSize = std::stod(EngineResources::settings["tile_size"]);
 
+	testChunkTexture = new sf::Texture();
+	testChunkTexture->create(CHUNK_SIZE*tileSize, CHUNK_SIZE*tileSize);
+
+	testChunkShape.setPosition(0, 0);
+	testChunkShape.setSize(sf::Vector2f(800, 600));
+	testChunkShape.setTexture(testChunkTexture);
+	testWoodImage = new sf::Image();
+	testWoodImage->loadFromFile("data/wood.png");
+
 	//test
 	ChunkManager chunkLoader;
 
@@ -16,12 +25,27 @@ Map::Map()
 		tryChunk.data[i][j] = Tile::WOOD;
 	*/
 
-	mapArray[ChunkUtilities::Coords{ 0, 0 }] = chunkLoader({ 0, 0 });
+	mapArray[ChunkUtilities::Coords{ 0, 0 }].chunk = chunkLoader({ 0, 0 });
 	
 	/*
 	chunkLoader.saveChunk({ 0, 0 }, tryChunk);
 	chunkLoader({ 0, 0 });
 	*/
+
+	
+	for (int i = 0; i < CHUNK_SIZE; ++i)
+		for (int j = 0; j < CHUNK_SIZE; ++j)
+		{
+			Tile::Type type = mapArray[{ 0, 0 }].chunk.data[i][j];
+
+			if (type == Tile::NONE)
+				continue;
+
+			testChunkTexture->update(*testWoodImage, tileSize * i, tileSize * j);
+		}
+		
+
+	//testChunkTexture->update(*testWoodImage, tileSize, tileSize);
 }
 
 
@@ -31,49 +55,30 @@ Map::~Map()
 
 void Map::update(float)
 {
+
+
+
 	// todo: queue of last updated tiles ex. [0][2]
 }
 
 void Map::draw(sf::RenderWindow & window)
 {
 	//todo: where is camera?
-
-	for (int i = 0; i < CHUNK_SIZE; ++i)
-		for (int j = 0; j < CHUNK_SIZE; ++j)
-		{
-			Tile::Type type = mapArray[{ 0, 0 }].data[i][j];
-
-			if (type == Tile::NONE)
-				continue;
-
-			sf::VertexArray quad(sf::Quads, 4);
-
-			quad[0].position = sf::Vector2f(tileSize * i,		tileSize * j);
-			quad[1].position = sf::Vector2f(tileSize * (i+1),	tileSize * j);
-			quad[2].position = sf::Vector2f(tileSize * (i + 1), tileSize * (j + 1));
-			quad[3].position = sf::Vector2f(tileSize * i,		tileSize * (j+1));
-
-			quad[0].texCoords = sf::Vector2f(0, 0);
-			quad[1].texCoords = sf::Vector2f(tileSize, 0);
-			quad[2].texCoords = sf::Vector2f(tileSize, tileSize);
-			quad[3].texCoords = sf::Vector2f(0, tileSize);
-
-			window.draw(quad, getTexture(type));
-		}
+	window.draw(testChunkShape);
 
 }
 
-const sf::Texture * Map::getTexture(Tile::Type type)
+const sf::Uint8 * Map::getTexture(Tile::Type type)
 {
 	switch (type)
 	{
 	case Tile::WOOD:
-		return woodTile.getTexture();
+		return woodTile.getPixels();
 		break;
 
 	case Tile::NONE:
 	default:
-		return noneTile.getTexture();
+		return noneTile.getPixels();
 		break;
 	}
 }

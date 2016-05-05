@@ -13,7 +13,40 @@
 #include "ChunkManager.h"
 
 namespace {
-	typedef std::unordered_map<ChunkUtilities::Coords, Chunk, ChunkUtilities::CoordsHash> MapArray;
+	struct TexturedChunk {
+		Chunk chunk;
+		sf::Texture * texture;
+
+		void clearTexture()
+		{
+			delete texture;
+		}
+
+		void createTexture()
+		{
+			texture = new sf::Texture();
+			texture->create(CHUNK_SIZE*TILE_SIZE, CHUNK_SIZE*TILE_SIZE);
+
+		}
+
+		void renderTexture()
+		{
+			for (int i = 0; i < CHUNK_SIZE; ++i)
+				for (int j = 0; j < CHUNK_SIZE; ++j)
+				{
+					Tile::Type type = chunk.data[i][j];
+
+					if (type == Tile::NONE)
+						continue;
+
+					//texture->update(*testWoodImage, tileSize * i, tileSize * j);
+				}
+		}
+
+
+	};
+
+	typedef std::unordered_map<ChunkUtilities::Coords, TexturedChunk, ChunkUtilities::CoordsHash> MapArray;
 }
 
 class Map : public GameObject
@@ -28,7 +61,7 @@ public:
 	//void setCamera(const sf::FloatRect &);
 
 protected:
-	const sf::Texture * Map::getTexture(Tile::Type type);
+	const sf::Uint8 * Map::getTexture(Tile::Type type);
 
 private:
 	MapArray mapArray;
@@ -38,6 +71,10 @@ private:
 
 	// Tile size
 	float tileSize;
+
+	sf::Texture * testChunkTexture;
+	sf::RectangleShape testChunkShape;
+	sf::Image * testWoodImage;
 
 	// TILES
 	Tile noneTile;
