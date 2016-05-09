@@ -13,9 +13,16 @@
 #include "ChunkManager.h"
 
 namespace {
-	struct TexturedChunk {
+	struct Textures
+	{
+
+	};
+
+	struct TexturedChunk : sf::Drawable {
 		Chunk chunk;
 		sf::Texture * texture;
+		sf::RectangleShape * shape;
+
 
 		void clearTexture()
 		{
@@ -42,6 +49,8 @@ namespace {
 					//texture->update(*testWoodImage, tileSize * i, tileSize * j);
 				}
 		}
+
+
 
 
 	};

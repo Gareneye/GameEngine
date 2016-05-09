@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile() : texture(new sf::Image())
+Tile::Tile() : texture()
 {
 }
 
@@ -9,9 +9,9 @@ Tile::~Tile()
 {
 }
 
-const sf::Uint8 * Tile::getPixels()
+const sf::Image & Tile::getImage()
 {
-	return texture->getPixelsPtr();
+	return texture;
 }
 
 void Tile::update(float) {}

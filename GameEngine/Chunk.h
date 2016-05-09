@@ -1,7 +1,7 @@
 #pragma once
 
-#define CHUNK_SIZE 64
-#define TILE_SIZE 30
+#define CHUNK_SIZE 32
+#define TILE_SIZE 20
 
 #include <array>
 #include "Tile.h"
@@ -34,6 +34,6 @@ namespace ChunkUtilities
 
 struct Chunk
 {
-	Tile::Type data[CHUNK_SIZE][CHUNK_SIZE];
+	Tile::Type data[CHUNK_SIZE][CHUNK_SIZE] = { {} };
 };
 

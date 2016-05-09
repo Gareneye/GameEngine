@@ -2,14 +2,11 @@
 
 Map::Map()
 {
-	// size of tiles
-	tileSize = std::stod(EngineResources::settings["tile_size"]);
-
 	testChunkTexture = new sf::Texture();
-	testChunkTexture->create(CHUNK_SIZE*tileSize, CHUNK_SIZE*tileSize);
+	testChunkTexture->create(CHUNK_SIZE*TILE_SIZE, CHUNK_SIZE*TILE_SIZE);
 
 	testChunkShape.setPosition(0, 0);
-	testChunkShape.setSize(sf::Vector2f(800, 600));
+	testChunkShape.setSize(sf::Vector2f(CHUNK_SIZE*TILE_SIZE, CHUNK_SIZE*TILE_SIZE));
 	testChunkShape.setTexture(testChunkTexture);
 	testWoodImage = new sf::Image();
 	testWoodImage->loadFromFile("data/wood.png");
@@ -32,6 +29,16 @@ Map::Map()
 	chunkLoader({ 0, 0 });
 	*/
 
+	for (int i = 0; i < CHUNK_SIZE; ++i)
+	{
+		for (int j = 0; j < CHUNK_SIZE; ++j)
+		{
+			std::cout << mapArray[{ 0, 0 }].chunk.data[i][j];
+		}
+		std::cout << std::endl;
+	}
+
+
 	
 	for (int i = 0; i < CHUNK_SIZE; ++i)
 		for (int j = 0; j < CHUNK_SIZE; ++j)
@@ -41,7 +48,7 @@ Map::Map()
 			if (type == Tile::NONE)
 				continue;
 
-			testChunkTexture->update(*testWoodImage, tileSize * i, tileSize * j);
+			//testChunkTexture->update(*testWoodImage, TILE_SIZE * i, TILE_SIZE * j);
 		}
 		
 

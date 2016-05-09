@@ -16,13 +16,13 @@ public:
 		WOOD
 	};
 
-	const sf::Uint8 * getPixels();
+	const sf::Image & getImage();
 
 	// virtual void notify(Unit&, Event)
 	virtual void update(float);
 
 protected:
 	Type tileType;
-	sf::Image * texture;
+	sf::Image texture;
 };
 
