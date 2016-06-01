@@ -11,15 +11,11 @@ public:
 	ChunkManager();
 	~ChunkManager();
 
-	const Chunk & operator()(ChunkUtilities::Coords coords);
-	const Chunk & operator()(int x, int y);
-
-	void saveChunk(ChunkUtilities::Coords coords, Chunk);
+	Chunk loadChunk(int x, int y);
+	void saveChunk(int x, int y, const Chunk &);
 private:
 	std::string path;
-
-	const Chunk & loadChunk(ChunkUtilities::Coords coords);
-	std::string getPath(ChunkUtilities::Coords coords);
+	std::string getPath(int x, int y);
 
 	std::fstream fileStream;
 };

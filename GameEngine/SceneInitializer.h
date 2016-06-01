@@ -22,5 +22,7 @@ struct SceneInitializer
 			//return new MenuScene();
 			break;
 		}
+
+		return new NullScene();
 	}
 };

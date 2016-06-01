@@ -17,6 +17,7 @@ public:
 	};
 
 	const sf::Image & getImage();
+	const sf::Uint8 * getPixels();
 
 	// virtual void notify(Unit&, Event)
 	virtual void update(float);

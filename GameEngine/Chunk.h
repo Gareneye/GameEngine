@@ -1,39 +1,35 @@
 #pragma once
 
-#define CHUNK_SIZE 32
-#define TILE_SIZE 20
+#define CHUNK_SIZE 12
+#define TILE_SIZE 30
 
 #include <array>
 #include "Tile.h"
 #include "EngineResources.h"
 
-namespace ChunkUtilities
-{
-	struct Coords {
-		int x; int y;
-		bool operator==(const ChunkUtilities::Coords & compareWith) const
-		{
-			return (
-				this->x == compareWith.x &&
-				this->y == compareWith.y
-				);
-		}
-	};
+class Chunk {
 
-	struct CoordsHash
+public:
+	Chunk() : data{ Tile::NONE } {}
+
+	Tile::Type get(unsigned int x, unsigned int y) const
 	{
-		std::size_t operator()(const ChunkUtilities::Coords & coords) const
-		{
-			return (
-				std::hash<int>()(coords.x) ^
-				std::hash<int>()(coords.y) << 1
-				);
-		}
-	};
-}
+		return data[x][y];
+	}
 
-struct Chunk
-{
-	Tile::Type data[CHUNK_SIZE][CHUNK_SIZE] = { {} };
+	void set(unsigned int x, unsigned int y, Tile::Type type)
+	{
+		data[x][y] = type;
+	}
+
+	static std::size_t hash(int x, int y)
+	{
+		return (
+			std::hash<int>()(x) ^
+			std::hash<int>()(y) << 1
+			);
+	}
+
+private:
+	Tile::Type data[CHUNK_SIZE][CHUNK_SIZE];
 };
-

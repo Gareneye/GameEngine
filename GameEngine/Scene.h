@@ -9,3 +9,8 @@ struct Scene
 	virtual void inputs(sf::Event, const sf::RenderWindow &) = 0;
 };
 
+struct NullScene final : public Scene {
+	void update(float) override {};
+	void draw(sf::RenderWindow &) override {};
+	void inputs(sf::Event, const sf::RenderWindow &) override {};
+};

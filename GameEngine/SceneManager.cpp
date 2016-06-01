@@ -23,7 +23,7 @@ void SceneManager::setScene(const SceneInitializer::Scenes & scene)
 
 bool SceneManager::step()
 {
-	return status;
+	return status == ON;
 }
 
 void SceneManager::finish()

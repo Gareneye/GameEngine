@@ -8,19 +8,9 @@ ChunkManager::ChunkManager() : path(EngineResources::settings["chunks_path"])
 ChunkManager::~ChunkManager()
 {}
 
-const Chunk & ChunkManager::operator()(ChunkUtilities::Coords coords)
+Chunk ChunkManager::loadChunk(int x, int y)
 {
-	return loadChunk(std::move(coords));
-}
-
-const Chunk & ChunkManager::operator()(int x, int y)
-{
-	return loadChunk({x, y});
-}
-
-const Chunk & ChunkManager::loadChunk(ChunkUtilities::Coords coords)
-{
-	fileStream.open(getPath(std::move(coords)), std::ios::in | std::ios::binary);
+	fileStream.open(getPath(std::move(x), std::move(y)), std::ios::in | std::ios::binary);
 
 	if (!fileStream.is_open())
 	{
@@ -36,21 +26,18 @@ const Chunk & ChunkManager::loadChunk(ChunkUtilities::Coords coords)
 	return loadedChunk;
 }
 
-void ChunkManager::saveChunk(ChunkUtilities::Coords coords, Chunk chunk)
+void ChunkManager::saveChunk(int x, int y, const Chunk & chunk)
 {
-	fileStream.open(getPath(std::move(coords)), std::ios::out | std::ios::binary | std::ios::trunc);
+	fileStream.open(getPath(std::move(x), std::move(y)), std::ios::out | std::ios::binary | std::ios::trunc);
 
 	fileStream.write((char*)&chunk, sizeof(Chunk));
 
 	fileStream.close();
 }
 
-std::string ChunkManager::getPath(ChunkUtilities::Coords coords)
+inline std::string ChunkManager::getPath(int x, int y)
 {
 	std::stringstream stringStream;
-	ChunkUtilities::CoordsHash value;
-
-	stringStream << path << '/' << value(coords) << ".chunk";
-
+	stringStream << path << '/' << Chunk::hash(x, y) << ".chunk";
 	return stringStream.str();
 }
