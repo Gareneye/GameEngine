@@ -11,7 +11,7 @@ public:
 	virtual ~GameScene();
 
 	virtual void update(float) override;
-	virtual void draw(sf::RenderWindow &) override;
+	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
 	virtual void inputs(sf::Event, const sf::RenderWindow &) override;
 
 private:

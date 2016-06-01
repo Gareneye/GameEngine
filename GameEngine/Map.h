@@ -159,8 +159,8 @@ public:
 	Map();
 	virtual ~Map();
 
-	virtual void update(float) override;
-	virtual void draw(sf::RenderWindow &) override;
+	void update(float) override;
+	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
 
 	//void setCamera(const sf::FloatRect &);
 

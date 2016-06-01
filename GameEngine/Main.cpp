@@ -50,7 +50,7 @@ int main()
 
 		// Rysowanie
 		window.clear();
-		active.draw(window);
+		window.draw(active);
 		window.display();
 	}
 

@@ -16,10 +16,11 @@ void GameScene::update(float dt)
 	map.update(dt);
 }
 
-void GameScene::draw(sf::RenderWindow & window)
+
+void GameScene::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	window.setView(camera.getView());
-	map.draw(window);
+	target.setView(camera.getView());
+	target.draw(map);
 }
 
 void GameScene::inputs(sf::Event event, const sf::RenderWindow & window)

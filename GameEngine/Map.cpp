@@ -18,8 +18,6 @@ void Map::update(float)
 
 }
 
-void Map::draw(sf::RenderWindow & window)
+void Map::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	test->draw(window);
-	//culling.draw(window);
 }

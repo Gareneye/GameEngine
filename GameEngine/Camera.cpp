@@ -56,7 +56,7 @@ sf::FloatRect Camera::getViewport()
 	return view.getViewport();
 }
 
-const sf::View & Camera::getView()
+const sf::View & Camera::getView() const
 {
 	return view;
 }

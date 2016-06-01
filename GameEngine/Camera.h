@@ -18,7 +18,7 @@ public:
 	//follow(const Unit &)
 
 	// for window only
-	const sf::View & getView();
+	const sf::View & getView() const;
 
 private:
 	sf::View view;
