@@ -2,5 +2,6 @@
 
 namespace EngineResources
 {
-	Settings settings = SettingsLoader::loadFromFile("settings.conf");;
+	Settings settings = SettingsLoader::loadFromFile("settings.conf");
+	Tiles TileObjects;
 }

@@ -12,8 +12,7 @@
 #include "Chunk.h"
 #include "Logger.h"
 #include "ChunkManager.h"
-
-
+#include "TexturedChunk.h"
 
 namespace {
 
@@ -33,10 +32,13 @@ namespace {
 
 		Chunk & get(int x, int y)
 		{
+			int position = cantorHash(x, y);
+			//todo sprawdzanie
 			return direction(x, y).at(cantorHash(x, y));
 		}
 
 	private:
+		// todo na wskazniki
 		std::vector<Chunk> nw;
 		std::vector<Chunk> ne;
 		std::vector<Chunk> se;
@@ -69,87 +71,42 @@ namespace {
 		}
 	};
 
-	struct Tiles
-	{
-		Tile noneTile;
-		WoodTile woodTile;
-
-	} TileObjects;
-
-	class TexturedChunk {
-	public:
-		TexturedChunk(int x, int y, const Chunk & chunk) : x(x), y(y), chunk(chunk), shape({ CHUNK_SIZE*TILE_SIZE, CHUNK_SIZE*TILE_SIZE })
-		{
-			texture.create(CHUNK_SIZE*TILE_SIZE, CHUNK_SIZE*TILE_SIZE);
-
-			shape.setPosition(x, y);
-			shape.setTexture(&texture);
-
-			render();
-		}
-
-		void render()
-		{
-			for (int i = 0; i < CHUNK_SIZE; ++i)
-				for (int j = 0; j < CHUNK_SIZE; ++j)
-				{
-					Tile::Type type = chunk.get(i, j);
-					const sf::Uint8 * pixels = nullptr;
-
-					switch (type)
-					{
-					case Tile::WOOD:
-						pixels = TileObjects.woodTile.getPixels();
-
-					case Tile::NONE:
-					default:
-						continue;
-						break;
-					}
-
-					texture.update(pixels, TILE_SIZE, TILE_SIZE, TILE_SIZE * i, TILE_SIZE * j);
-				}
-		}
-
-		void draw(sf::RenderWindow & window) {
-			window.draw(shape);
-		}
-
-	private:
-		sf::RectangleShape shape;
-		sf::Texture texture;
-		const Chunk & chunk;
-
-		int x, y;
-	};
-
-	class ChunkCulling
+	
+	class ChunkCulling : public sf::Drawable
 	{
 	public:
-		ChunkCulling()
+		void setData(MapArrays * mapArray)
 		{
+			this->mapArray = mapArray;
 		}
 
 		void reset()
 		{
 			visibleChunks.clear();
+			visibleChunks.emplace_back(0, 0, mapArray->get(0, 0));
+			visibleChunks.emplace_back(1, 0, mapArray->get(1, 0));
+			//visibleChunks.emplace_back(0, 1, mapArray->get(0, 1));
+			//visibleChunks.emplace_back(0, 1, mapArray->get(1, 0));
+			//visibleChunks.emplace_back(-1, 0, mapArray->get(1, 0));
 		}
 
-		void operator()(MapArrays & mapArrays)
+#include <iostream>
+		void operator()(const sf::FloatRect & camera)
 		{
-			visibleChunks.emplace_back(0,0, mapArrays.get(0,0));
+			std::cout << camera.left << std::endl;
 		}
 
-		// todo typo on sf::drawable
-		void draw(sf::RenderWindow & window) {
+		void draw(sf::RenderTarget & target, sf::RenderStates states) const override
+		{
 			for (auto chunk : visibleChunks)
 			{
-				chunk.draw(window);
+				target.draw(chunk);
 			}
 		}
 
 	private:
 		std::list<TexturedChunk> visibleChunks;
+		MapArrays * mapArray;
 	};
 }
 
@@ -160,18 +117,12 @@ public:
 	virtual ~Map();
 
 	void update(float) override;
-	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
-
-	//void setCamera(const sf::FloatRect &);
+	void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
+	void camera(const sf::FloatRect &);
 
 private:
 	MapArrays mapData;
 	ChunkManager chunkManager;
 	ChunkCulling culling;
-
-	// Camera Rectangle for Culling
-	sf::FloatRect camera;
-
-	TexturedChunk * test;
 };
 

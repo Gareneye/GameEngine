@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "RootEngine.h"
 
-GameScene::GameScene() : map(), camera()
+GameScene::GameScene()
 {
 }
 
@@ -13,6 +13,7 @@ GameScene::~GameScene()
 void GameScene::update(float dt)
 {
 	camera.update(dt);
+	//map.camera(camera.getViewport());
 	map.update(dt);
 }
 

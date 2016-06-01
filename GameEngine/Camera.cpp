@@ -41,17 +41,17 @@ void Camera::update(float dt)
 	view.setCenter(posCamera.x - speedRatioX * speed * dt, posCamera.y - speedRatioY * speed * dt);
 }
 
-void Camera::move(sf::Vector2f dest)
+void Camera::move(const sf::Vector2f & dest)
 {
 	posTarget = dest;
 }
 
-void Camera::drag(sf::Vector2f offset)
+void Camera::drag(const sf::Vector2f & offset)
 {
 	posTarget = view.getCenter() + offset;
 }
 
-sf::FloatRect Camera::getViewport()
+const sf::FloatRect & Camera::getViewport() const
 {
 	return view.getViewport();
 }

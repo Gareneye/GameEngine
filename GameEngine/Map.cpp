@@ -3,9 +3,10 @@
 Map::Map()
 {
 	mapData.add(0, 0, chunkManager.loadChunk(0, 0));
-	//culling(mapData);
+	mapData.add(1, 0, chunkManager.loadChunk(1, 0));
 
-	test = new TexturedChunk(0, 0, mapData.get(0, 0));
+	culling.setData(&mapData);
+	culling.reset();
 }
 
 
@@ -20,4 +21,10 @@ void Map::update(float)
 
 void Map::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
+	target.draw(culling);
+}
+
+void Map::camera(const sf::FloatRect & camera)
+{
+	//culling(camera);
 }

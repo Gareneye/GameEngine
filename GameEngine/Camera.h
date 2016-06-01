@@ -10,15 +10,14 @@ public:
 	virtual ~Camera();
 
 	virtual void update(float);
-	void move(sf::Vector2f);
-	void drag(sf::Vector2f);
+	void move(const sf::Vector2f &);
+	void drag(const sf::Vector2f &);
 
-	sf::FloatRect getViewport();
 
 	//follow(const Unit &)
 
-	// for window only
 	const sf::View & getView() const;
+	const sf::FloatRect & getViewport() const;
 
 private:
 	sf::View view;

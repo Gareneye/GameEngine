@@ -290,6 +290,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="SettingsLoader.cpp" />
+    <ClCompile Include="TexturedChunk.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="WoodTile.cpp" />
   </ItemGroup>
@@ -309,6 +310,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SettingsLoader.h" />
+    <ClInclude Include="TexturedChunk.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="WoodTile.h" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
 
-#define CHUNK_SIZE 12
-#define TILE_SIZE 30
+#define CHUNK_SIZE 32
+#define TILE_SIZE 17
 
 #include <array>
 #include "Tile.h"
