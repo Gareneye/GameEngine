@@ -4,12 +4,12 @@ const float Camera::PI = 3.14f;
 
 Camera::Camera() : view(), speed(150.0f), distance(120.0f), radius(5.0f)
 {
-	view.setCenter(0, 0);
-
 	view.setSize(
 		std::stod(EngineResources::settings["res_x"]),
 		std::stod(EngineResources::settings["res_y"])
-		);
+	);
+
+	reset();
 }
 
 
@@ -51,9 +51,21 @@ void Camera::drag(const sf::Vector2f & offset)
 	posTarget = view.getCenter() + offset;
 }
 
-const sf::FloatRect & Camera::getViewport() const
+const sf::FloatRect Camera::getViewport() const
 {
-	return view.getViewport();
+	sf::FloatRect viewPort;
+	viewPort.width = view.getSize().x;
+	viewPort.height = view.getSize().y;
+	viewPort.left = view.getCenter().x - viewPort.width/2;
+	viewPort.top = view.getCenter().y - viewPort.height/2;
+
+	return viewPort;
+}
+
+void Camera::reset()
+{
+	view.setCenter(view.getSize().x/2, view.getSize().y/2);
+	posTarget = view.getCenter();
 }
 
 const sf::View & Camera::getView() const

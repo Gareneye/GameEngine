@@ -3,6 +3,7 @@
 
 GameScene::GameScene()
 {
+	camera.reset();
 }
 
 
@@ -13,7 +14,7 @@ GameScene::~GameScene()
 void GameScene::update(float dt)
 {
 	camera.update(dt);
-	//map.camera(camera.getViewport());
+	map.camera(camera.getViewport());
 	map.update(dt);
 }
 

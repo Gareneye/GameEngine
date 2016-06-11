@@ -279,6 +279,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ChunkCulling.cpp" />
+    <ClCompile Include="ChunkGenerator.cpp" />
     <ClCompile Include="ChunkManager.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="EngineResources.cpp" />
@@ -286,6 +288,7 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapData.cpp" />
     <ClCompile Include="RootEngine.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Settings.cpp" />
@@ -297,6 +300,8 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Chunk.h" />
+    <ClInclude Include="ChunkCulling.h" />
+    <ClInclude Include="ChunkGenerator.h" />
     <ClInclude Include="ChunkManager.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="EngineResources.h" />
@@ -304,6 +309,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapData.h" />
     <ClInclude Include="RootEngine.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneInitializer.h" />

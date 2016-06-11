@@ -1,7 +1,7 @@
 #pragma once
 
-#define CHUNK_SIZE 32
-#define TILE_SIZE 17
+#define CHUNK_SIZE 16
+#define TILE_SIZE 30
 
 #include <array>
 #include "Tile.h"
@@ -24,9 +24,10 @@ public:
 
 	static std::size_t hash(int x, int y)
 	{
+		
 		return (
-			std::hash<int>()(x) ^
-			std::hash<int>()(y) << 1
+			std::hash<int>()(x) << 1 ^
+			std::hash<int>()(y) << 2
 			);
 	}
 

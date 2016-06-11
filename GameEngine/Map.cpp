@@ -1,12 +1,7 @@
 #include "Map.h"
 
-Map::Map()
+Map::Map() : culling(mapData)
 {
-	mapData.add(0, 0, chunkManager.loadChunk(0, 0));
-	mapData.add(1, 0, chunkManager.loadChunk(1, 0));
-
-	culling.setData(&mapData);
-	culling.reset();
 }
 
 
@@ -14,9 +9,9 @@ Map::~Map()
 {
 }
 
-void Map::update(float)
+void Map::update(float dt)
 {
-
+	culling.update(dt);
 }
 
 void Map::draw(sf::RenderTarget & target, sf::RenderStates states) const
@@ -26,5 +21,5 @@ void Map::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Map::camera(const sf::FloatRect & camera)
 {
-	//culling(camera);
+	culling(camera);
 }

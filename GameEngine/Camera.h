@@ -17,7 +17,8 @@ public:
 	//follow(const Unit &)
 
 	const sf::View & getView() const;
-	const sf::FloatRect & getViewport() const;
+	const sf::FloatRect getViewport() const;
+	void reset();
 
 private:
 	sf::View view;
