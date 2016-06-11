@@ -40,6 +40,8 @@ void ChunkCulling::operator()(const sf::FloatRect & camera)
 		floor((camera.top + camera.height) / chunkSizePixels)
 	};
 
+	if (newBounds == cullingBounds) return;
+
 	int sharedStartX = std::max(newBounds.startX, cullingBounds.startX);
 	int sharedEndX = std::min(newBounds.endX, cullingBounds.endX);
 

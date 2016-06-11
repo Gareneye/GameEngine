@@ -26,8 +26,8 @@ public:
 	{
 		
 		return (
-			std::hash<int>()(x) << 1 ^
-			std::hash<int>()(y) << 2
+			std::hash<int>()(x) << ^
+			std::hash<int>()(y) << 1
 			);
 	}
 

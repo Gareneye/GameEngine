@@ -34,6 +34,16 @@ private:
 
 		int endX;
 		int endY;
+
+		bool operator==(const Bounds & another)
+		{
+			return
+				startX == another.startX &&
+				startY == another.startY &&
+				endX == another.endX &&
+				endY == another.endY;
+		}
+
 	} cullingBounds;
 
 	NestedMapOfChunk toDraw;
