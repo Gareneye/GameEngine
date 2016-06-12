@@ -10,18 +10,11 @@ ChunkManager::~ChunkManager()
 
 Chunk ChunkManager::loadChunk(int x, int y)
 {
-	std::string path = getPath(std::move(x), std::move(y));
-	fileStream.open(path, std::ios::in | std::ios::binary);
-
-	std::cout << "Ladowanie chunka x " << x << " y " << y << std::endl;
+	fileStream.open(getPath(std::move(x), std::move(y)), std::ios::in | std::ios::binary);
 
 	if (!fileStream.is_open())
 	{
-		std::cout << "Nie znaleziono chunka x " << x << " y " << y << std::endl;
-		Logger::log("Nie mozna otworzyc chunka " + path);
-		// TODO GENERATOR
-		saveChunk(x, y, Chunk());
-		return Chunk();
+		return generateChunk(x, y);
 	}
 
 	Chunk loadedChunk;
@@ -45,4 +38,11 @@ inline std::string ChunkManager::getPath(int x, int y)
 	std::stringstream stringStream;
 	stringStream << path << '/' << Chunk::hash(x, y) << ".chunk";
 	return stringStream.str();
+}
+
+inline Chunk ChunkManager::generateChunk(int x, int y)
+{
+	Chunk chunk = chunkGenerator();
+	saveChunk(x, y, chunk);
+	return chunk;
 }

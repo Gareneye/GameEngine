@@ -29,7 +29,7 @@ void ChunkCulling::draw(sf::RenderTarget & target, sf::RenderStates states) cons
 	}
 }
 
-#include <iostream>
+
 void ChunkCulling::operator()(const sf::FloatRect & camera)
 {
 	Bounds newBounds = {

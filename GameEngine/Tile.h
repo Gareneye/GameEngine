@@ -13,7 +13,9 @@ public:
 	enum Type
 	{
 		NONE,
-		WOOD
+		WOOD,
+
+		END // abstract Type for end random
 	};
 
 	const sf::Image & getImage();

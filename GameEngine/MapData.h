@@ -36,8 +36,6 @@ private:
 	ChunkManager chunkManager;
 
 	ChunkContainer & getDirection(int x, int y);
-
-	Chunk loadChunk(int x, int y);
 	const Chunk & add(int x, int y, const Chunk &);
 };
 

@@ -49,7 +49,6 @@ private:
 	NestedMapOfChunk toDraw;
 
 	// TODO GLOBAL OFFSET TO MINIMALIZE MEMORY POOL
-	int offsetMemory;
 
 	const unsigned int chunkSizePixels;
 };

@@ -5,6 +5,8 @@
 
 int main()
 {
+	srand(time(NULL));
+
 	// RootEngine
 	RootEngine::sceneManager.setScene(SceneInitializer::GAME_SCENE);
 

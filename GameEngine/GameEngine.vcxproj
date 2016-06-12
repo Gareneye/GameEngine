@@ -279,6 +279,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Chunk.cpp" />
     <ClCompile Include="ChunkCulling.cpp" />
     <ClCompile Include="ChunkGenerator.cpp" />
     <ClCompile Include="ChunkManager.cpp" />

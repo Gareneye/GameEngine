@@ -19,7 +19,7 @@ const Chunk & MapData::getChunk(int x, int y)
 	if (chunk != nullptr)
 		return *chunk;
 	else
-		return loadChunk(x, y);
+		return add(x, y, chunkManager.loadChunk(x, y));
 }
 
 inline ChunkContainer& MapData::getDirection(int x, int y)
@@ -38,10 +38,6 @@ inline ChunkContainer& MapData::getDirection(int x, int y)
 		else
 			return ne;
 	}
-}
-
-inline Chunk MapData::loadChunk(int x, int y) {
-	return add(x, y, chunkManager.loadChunk(x, y));
 }
 
 const Chunk & MapData::add(int x, int y, const Chunk & chunk)

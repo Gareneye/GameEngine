@@ -4,6 +4,7 @@
 #include <sstream>
 #include "Chunk.h"
 #include "EngineResources.h"
+#include "ChunkGenerator.h"
 
 class ChunkManager
 {
@@ -18,4 +19,8 @@ private:
 	std::string getPath(int x, int y);
 
 	std::fstream fileStream;
+
+	Chunk generateChunk(int x, int y);
+
+	ChunkGenerator chunkGenerator;
 };

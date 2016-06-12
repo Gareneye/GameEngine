@@ -1,7 +1,5 @@
 #include "TexturedChunk.h"
 
-#include <iostream>
-
 TexturedChunk::TexturedChunk(int x, int y, const Chunk & chunk)	: 
 	x(x), y(y), 
 	chunk(chunk), 
@@ -26,9 +24,8 @@ TexturedChunk::TexturedChunk(int x, int y, const Chunk & chunk)	:
 
 	text.setString(chunkText);
 	text.setPosition(CHUNK_IN_PX*x + CHUNK_IN_PX/2, CHUNK_IN_PX*y + CHUNK_IN_PX / 2);
-
-	std::cout << "Tworze chunka (" << x << ", " << y << ") " << std::endl;
 #endif //  _DEBUG
+
 }
 
 TexturedChunk::TexturedChunk(const TexturedChunk & from) : 
@@ -48,10 +45,6 @@ TexturedChunk::TexturedChunk(const TexturedChunk & from) :
 TexturedChunk::~TexturedChunk()
 {
 	delete texture;
-
-#if _DEBUG 
-	std::cout << "Usuwam chunka (" << x << ", " << y << ") " << std::endl;
-#endif //  _DEBUG
 }
 
 void TexturedChunk::render()
@@ -66,7 +59,7 @@ void TexturedChunk::render()
 
 void TexturedChunk::render(int x, int y, Tile::Type type)
 {
-	const sf::Uint8 * pixels = nullptr;
+	const sf::Uint8 *pixels = nullptr;
 
 	switch (type)
 	{
@@ -76,7 +69,7 @@ void TexturedChunk::render(int x, int y, Tile::Type type)
 
 	case Tile::NONE:
 	default:
-		pixels = EngineResources::TileObjects.woodTile.getPixels();
+		//pixels = EngineResources::TileObjects.woodTile.getPixels();
 		break;
 	}
 
