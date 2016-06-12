@@ -25,6 +25,8 @@ public:
 	void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
 	void operator()(const sf::FloatRect & camera);
 
+	unsigned int getAmounts();
+	static void toggleEnable(bool);
 private:
 	MapData & mapData;
 
@@ -51,5 +53,6 @@ private:
 	// TODO GLOBAL OFFSET TO MINIMALIZE MEMORY POOL
 
 	const unsigned int chunkSizePixels;
+	static bool enabled;
 };
 

@@ -1,6 +1,6 @@
 #include "ChunkCulling.h"
 
-
+bool ChunkCulling::enabled = true;
 
 ChunkCulling::ChunkCulling(MapData & mapData) : mapData(mapData), chunkSizePixels(CHUNK_IN_PX), cullingBounds{0,0,0,0}
 {
@@ -32,6 +32,8 @@ void ChunkCulling::draw(sf::RenderTarget & target, sf::RenderStates states) cons
 
 void ChunkCulling::operator()(const sf::FloatRect & camera)
 {
+	if (!enabled) return;
+
 	Bounds newBounds = {
 		floor(camera.left / chunkSizePixels),
 		floor(camera.top / chunkSizePixels),
@@ -76,4 +78,21 @@ void ChunkCulling::operator()(const sf::FloatRect & camera)
 	}
 
 	cullingBounds = newBounds;
+	std::cout << "Liczba rysowanych chunkow: " << getAmounts() << std::endl;
+}
+
+unsigned int ChunkCulling::getAmounts()
+{
+	unsigned int amount = 0;
+
+	for (auto &x : toDraw) {
+		amount += x.second.size();
+	}
+
+	return amount;
+}
+
+void ChunkCulling::toggleEnable(bool change)
+{
+	enabled = change;
 }

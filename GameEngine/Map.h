@@ -30,6 +30,7 @@ public:
 	void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
 	void camera(const sf::FloatRect &);
 
+	void debugCulling(bool);
 private:
 	MapData mapData;
 	ChunkCulling culling;

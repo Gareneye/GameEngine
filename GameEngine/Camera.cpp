@@ -62,6 +62,11 @@ const sf::FloatRect Camera::getViewport() const
 	return viewPort;
 }
 
+void Camera::zoom(float factor)
+{
+	view.zoom(factor);
+}
+
 void Camera::reset()
 {
 	view.setCenter(view.getSize().x/2, view.getSize().y/2);

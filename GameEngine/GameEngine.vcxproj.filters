@@ -102,6 +102,9 @@
     <ClCompile Include="Chunk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GrassTile.cpp">
+      <Filter>Source Files\World\Tiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="ChunkGenerator.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GrassTile.h">
+      <Filter>Header Files\World\Tiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

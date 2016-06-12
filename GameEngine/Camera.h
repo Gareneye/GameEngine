@@ -18,6 +18,7 @@ public:
 
 	const sf::View & getView() const;
 	const sf::FloatRect getViewport() const;
+	void zoom(float);
 	void reset();
 
 private:

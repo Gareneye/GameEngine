@@ -67,6 +67,10 @@ void TexturedChunk::render(int x, int y, Tile::Type type)
 		pixels = EngineResources::TileObjects.woodTile.getPixels();
 		break;
 
+	case Tile::GRASS:
+		pixels = EngineResources::TileObjects.grassTile.getPixels();
+		break;
+
 	case Tile::NONE:
 	default:
 		//pixels = EngineResources::TileObjects.woodTile.getPixels();

@@ -23,3 +23,8 @@ void Map::camera(const sf::FloatRect & camera)
 {
 	culling(camera);
 }
+
+void Map::debugCulling(bool change)
+{
+	culling.toggleEnable(!change);
+}

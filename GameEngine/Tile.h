@@ -14,6 +14,7 @@ public:
 	{
 		NONE,
 		WOOD,
+		GRASS,
 
 		END // abstract Type for end random
 	};

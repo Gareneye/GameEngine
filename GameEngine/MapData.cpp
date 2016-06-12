@@ -38,6 +38,7 @@ inline ChunkContainer& MapData::getDirection(int x, int y)
 		else
 			return ne;
 	}
+
 }
 
 const Chunk & MapData::add(int x, int y, const Chunk & chunk)

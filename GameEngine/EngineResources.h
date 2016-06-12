@@ -3,6 +3,7 @@
 #include "Settings.h"
 #include "SettingsLoader.h"
 #include "WoodTile.h"
+#include "GrassTile.h"
 
 namespace EngineResources
 {
@@ -12,6 +13,7 @@ namespace EngineResources
 	{
 		Tile noneTile;
 		WoodTile woodTile;
+		GrassTile grassTile;
 
 	} TileObjects;
 }

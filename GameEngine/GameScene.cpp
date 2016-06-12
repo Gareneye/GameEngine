@@ -23,6 +23,9 @@ void GameScene::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.setView(camera.getView());
 	target.draw(map);
+
+	// TODO GUI
+	target.getDefaultView();
 }
 
 void GameScene::inputs(sf::Event event, const sf::RenderWindow & window)
@@ -48,8 +51,26 @@ void GameScene::inputs(sf::Event event, const sf::RenderWindow & window)
 		case sf::Keyboard::D:
 			camera.drag(sf::Vector2f(distance, .0f));
 			break;
+
+		case sf::Keyboard::C:
+			map.debugCulling(true);
+			break;
+
+		case sf::Keyboard::V:
+			map.debugCulling(false);
+			break;
+
 		}
 
+
+	}
+
+	if (event.type == sf::Event::MouseWheelMoved)
+	{
+		if (event.mouseWheel.delta < 0)
+			camera.zoom(1.1);
+		else
+			camera.zoom(0.9);
 	}
 
 	if (event.type == sf::Event::MouseButtonPressed)
